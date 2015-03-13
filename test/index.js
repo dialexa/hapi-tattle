@@ -10,6 +10,12 @@ var describe = lab.experiment;
 var it = lab.test;
 var expect = require('code').expect;
 
+var internals = {};
+
+internals.header = function (username, password) {
+  return 'Basic ' + (new Buffer(username + ':' + password, 'utf8')).toString('base64');
+};
+
 describe('Registration', function(){
   var server;
 
@@ -325,6 +331,73 @@ describe('Transaction', function(){
       });
 
       server.inject('/test', function(res){
+        expect(res.result.foo).to.equal('bar');
+        expect(res.statusCode).to.equal(203);
+      });
+
+      server.on('tail', function(){
+        post.done();
+        done();
+      });
+    });
+  });
+});
+
+describe('Credentials', function(){
+  var server;
+
+  beforeEach(function(done){
+    server = new Hapi.Server({debug: {request: ['error']}}).connection({ host: 'test' });
+    server.register(require('hapi-auth-basic'), done);
+  });
+
+  afterEach(function(done){
+    nock.cleanAll();
+    done();
+  });
+
+  it('should send credentials information', function(done){
+    var post = nock('https://my.app.com')
+                .post('/transactions', {
+                  transaction: {
+                    path: '/test',
+                    statusCode: 203,
+                    method: 'GET',
+                    credentials: {
+                      id: '02893261-7e35-42e7-98cc-0b4c87296dc1',
+                      name: 'test'
+                    }
+                  }
+                }).reply(201, {status: 'ok'});
+
+    server.auth.strategy('simple', 'basic', { validateFunc: function(username, password, cb){
+      cb(null, true, { id: '02893261-7e35-42e7-98cc-0b4c87296dc1', name: 'test'});
+    }});
+
+    server.register({
+      register: require('../'),
+      options: {
+        url: 'https://my.app.com/transactions',
+        auth: {
+          username: 'me',
+          password: 'secret'
+        }
+      }
+    }, function() {
+      server.route({
+        method: 'GET',
+        path: '/test',
+        config: { auth: 'simple' },
+        handler: function(req, reply) {
+          reply({foo: 'bar'}).code(203);
+        }
+      });
+
+      server.inject({
+        url: '/test',
+        method: 'GET',
+        headers: { authorization: internals.header('other_user', 'shhhhh') }
+      }, function(res){
         expect(res.result.foo).to.equal('bar');
         expect(res.statusCode).to.equal(203);
       });
