@@ -1,6 +1,6 @@
 {
   "name": "hapi-tattle",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Hapi plugin that reports transactions to a central service",
   "main": "index.js",
   "scripts": {
@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/dialexa/hapi-tattle",
   "dependencies": {
+    "boom": "^2.6.1",
     "hoek": "^2.11.1",
     "joi": "^6.0.5",
     "yarp": "^0.2.0"

@@ -1,6 +1,7 @@
 var Lab = require('lab');
 var Hapi = require('hapi');
 var nock = require('nock');
+var Boom = require('boom');
 
 var lab = exports.lab = Lab.script();
 var before = lab.before;
@@ -297,6 +298,38 @@ describe('Transaction', function(){
       server.inject('/test', function(res){
           expect(res.result.foo).to.equal('bar');
           expect(res.statusCode).to.equal(203);
+      });
+
+      server.on('tail', function(){
+        post.done();
+        done();
+      });
+    });
+  });
+
+  it('should handle Boom responses', function(done){
+    var post = nock('https://my.app.com')
+                .post('/transactions', {
+                  transaction: { path: '/test', statusCode: 403, method: 'GET' }
+                }).reply(201, {status: 'ok'});
+
+    server.register({
+      register: require('../'),
+      options: {
+        url: 'https://my.app.com/transactions'
+      }
+    }, function() {
+      server.route({
+        method: 'GET',
+        path: '/test',
+        handler: function(req, reply) {
+          reply(Boom.forbidden('not allowed'));
+        }
+      });
+
+      server.inject('/test', function(res){
+        expect(res.result.message).to.equal('not allowed');
+        expect(res.statusCode).to.equal(403);
       });
 
       server.on('tail', function(){
