@@ -1,10 +1,9 @@
 Tattle Plugin for Hapi
 ======================
 
-[![NPM](https://nodei.co/npm/hapi-tattle.png)](https://nodei.co/npm/hapi-tattle/)
-
 [![npm version](https://badge.fury.io/js/hapi-tattle.svg)](http://badge.fury.io/js/hapi-tattle)
 [![Build Status](https://travis-ci.org/dialexa/hapi-tattle.svg)](https://travis-ci.org/dialexa/hapi-tattle)
+[![Coverage Status](https://coveralls.io/repos/dialexa/hapi-tattle/badge.svg)](https://coveralls.io/r/dialexa/hapi-tattle)
 
 A Hapi plugin that reports certain requests to a central HTTP service.  Works with Hapi version 8 or later.
 
