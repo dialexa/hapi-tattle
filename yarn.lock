@@ -127,11 +127,7 @@ bcrypt-pbkdf@^1.0.0:
   dependencies:
     tweetnacl "^0.14.3"
 
-bluebird@^2.9.14:
-  version "2.11.0"
-  resolved "https://registry.yarnpkg.com/bluebird/-/bluebird-2.11.0.tgz#534b9033c022c9579c56ba3b3e5a5caafbb650e1"
-
-bluebird@^3.5.1:
+bluebird@^3.4.6, bluebird@^3.5.1:
   version "3.5.1"
   resolved "https://registry.yarnpkg.com/bluebird/-/bluebird-3.5.1.tgz#d9551f9de98f1fcda1e683d17ee91a0602ee2eb9"
 
@@ -1393,7 +1389,7 @@ lodash@^3.3.1:
   version "3.10.1"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-3.10.1.tgz#5bf45e8e49ba4189e17d482789dfd15bd140b7b6"
 
-lodash@^4.17.5:
+lodash@^4.17.2, lodash@^4.17.5:
   version "4.17.10"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.10.tgz#1b7793cf7259ea38fb3661d4d38b3260af8ae4e7"
 
@@ -1705,7 +1701,7 @@ request@2.79.0:
     tunnel-agent "~0.4.1"
     uuid "^3.0.0"
 
-request@^2.49.0:
+request@^2.58.0:
   version "2.85.0"
   resolved "https://registry.yarnpkg.com/request/-/request-2.85.0.tgz#5a03615a47c61420b3eb99b7dba204f83603e1fa"
   dependencies:
@@ -2064,9 +2060,10 @@ yargs@~3.10.0:
     decamelize "^1.0.0"
     window-size "0.1.0"
 
-yarp@^0.3.0:
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/yarp/-/yarp-0.3.0.tgz#540df19f2450d19ce97d56e4550db3f1cf8092ee"
+yarp@1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/yarp/-/yarp-1.0.0.tgz#da71a9c72b29eb7aef8cf8b2b4e11654dd62f803"
   dependencies:
-    bluebird "^2.9.14"
-    request "^2.49.0"
+    bluebird "^3.4.6"
+    lodash "^4.17.2"
+    request "^2.58.0"

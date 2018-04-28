@@ -25,7 +25,7 @@
   "dependencies": {
     "hoek": "^5.0.3",
     "joi": "13.2.0",
-    "yarp": "^0.3.0"
+    "yarp": "1.0.0"
   },
   "devDependencies": {
     "bluebird": "^3.5.1",
