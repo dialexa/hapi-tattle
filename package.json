@@ -35,9 +35,9 @@
     "eslint": "^1.5.1",
     "eslint-config-vinli": "^3.0.1",
     "eslint-plugin-mocha": "^1.0.0",
-    "hapi": "~8.4.0",
+    "hapi": "^16.6.2",
     "hapi-auth-basic": "^2.0.0",
     "lab": "^5.5.0",
-    "nock": "^1.2.0"
+    "nock": "9.2.5"
   }
 }
