@@ -24,8 +24,8 @@
   "homepage": "https://github.com/dialexa/hapi-tattle",
   "dependencies": {
     "hoek": "^5.0.3",
-    "joi": "13.2.0",
-    "yarp": "1.0.0"
+    "joi": "^13.2.0",
+    "yarp": "^1.0.0"
   },
   "devDependencies": {
     "bluebird": "^3.5.1",
@@ -38,6 +38,6 @@
     "hapi": "^16.6.2",
     "hapi-auth-basic": "^2.0.0",
     "lab": "^5.5.0",
-    "nock": "9.2.5"
+    "nock": "^9.2.5"
   }
 }
