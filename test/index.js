@@ -1,3 +1,5 @@
+'use strict';
+
 var Lab = require('lab');
 var Hapi = require('hapi');
 var nock = require('nock');
@@ -5,7 +7,6 @@ var Boom = require('boom');
 var B = require('bluebird');
 
 var lab = exports.lab = Lab.script();
-var before = lab.before;
 var beforeEach = lab.beforeEach;
 var afterEach = lab.afterEach;
 var describe = lab.experiment;
@@ -14,7 +15,7 @@ var expect = require('code').expect;
 
 var internals = {};
 
-internals.header = function (username, password) {
+internals.header = function(username, password) {
   return 'Basic ' + (new Buffer(username + ':' + password, 'utf8')).toString('base64');
 };
 
@@ -93,7 +94,7 @@ describe('Transaction', function() {
       server.route({
         method: 'GET',
         path: '/test',
-        config: { app: {isTransaction: false}},
+        config: { app: { isTransaction: false } },
         handler: function(req, reply) {
           reply({ foo: 'bar' }).code(203);
         }
@@ -126,13 +127,13 @@ describe('Transaction', function() {
       server.route({
         method: 'GET',
         path: '/test',
-        config: { app: {isTransaction: true}},
+        config: { app: { isTransaction: true } },
         handler: function(req, reply) {
           reply({ foo: 'bar' }).code(203);
         }
       });
 
-      server.inject('/test', function(res) {});
+      server.inject('/test', function() {});
 
       server.on('tail', function() {
         post.done();
@@ -197,7 +198,7 @@ describe('Transaction', function() {
         }
       });
 
-      server.inject('/test', function(res) { });
+      server.inject('/test', function() { });
 
       server.on('tail', function() {
         post.done();
@@ -297,8 +298,8 @@ describe('Transaction', function() {
       });
 
       server.inject('/test', function(res) {
-          expect(res.result.foo).to.equal('bar');
-          expect(res.statusCode).to.equal(203);
+        expect(res.result.foo).to.equal('bar');
+        expect(res.statusCode).to.equal(203);
       });
 
       server.on('tail', function() {
