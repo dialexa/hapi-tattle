@@ -405,7 +405,7 @@ describe('Credentials', function() {
                   }
                 }).reply(201, { status: 'ok' });
 
-    server.auth.strategy('simple', 'basic', { validateFunc: function(username, password, cb) {
+    server.auth.strategy('simple', 'basic', { validateFunc: function(request, username, password, cb) {
       cb(null, true, { id: '02893261-7e35-42e7-98cc-0b4c87296dc1', name: 'test' });
     } });
 
