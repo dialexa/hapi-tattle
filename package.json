@@ -4,6 +4,7 @@
   "description": "Hapi plugin that reports transactions to a central service",
   "main": "index.js",
   "scripts": {
+    "lint": "eslint --quiet .",
     "test": "lab -r console -t 100 -a code",
     "test-ci": "lab -r lcov -t 100 -a code | ./node_modules/.bin/coveralls"
   },
@@ -17,6 +18,10 @@
     "http"
   ],
   "author": "Powell Kinney <powell@dialexa.com>",
+  "contributors": [{
+    "name": "Martin Arista",
+    "url": "https://www.mrtnrst.com"
+  }],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/dialexa/hapi-tattle/issues"

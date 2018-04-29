@@ -49,9 +49,9 @@ describe('Transaction', function() {
 
   it('should register a transaction with an external server', function(done) {
     var post = nock('https://my.app.com')
-                .post('/transactions', {
-                  transaction: { path: '/test', statusCode: 203, method: 'GET' }
-                }).reply(201, { status: 'ok' });
+      .post('/transactions', {
+        transaction: { path: '/test', statusCode: 203, method: 'GET' }
+      }).reply(201, { status: 'ok' });
 
     server.register({
       register: require('../'),
@@ -78,9 +78,9 @@ describe('Transaction', function() {
 
   it('should not send a transaction if the filterFunc is not satisfied', function(done) {
     var post = nock('https://my.app.com')
-                .post('/transactions', {
-                  transaction: { path: '/test', statusCode: 203, method: 'GET' }
-                }).reply(201, { status: 'ok' });
+      .post('/transactions', {
+        transaction: { path: '/test', statusCode: 203, method: 'GET' }
+      }).reply(201, { status: 'ok' });
 
     server.register({
       register: require('../'),
@@ -111,9 +111,9 @@ describe('Transaction', function() {
 
   it('should send a transaction if the filterFunc is satisfied', function(done) {
     var post = nock('https://my.app.com')
-                .post('/transactions', {
-                  transaction: { path: '/test', statusCode: 203, method: 'GET' }
-                }).reply(201, { status: 'ok' });
+      .post('/transactions', {
+        transaction: { path: '/test', statusCode: 203, method: 'GET' }
+      }).reply(201, { status: 'ok' });
 
     server.register({
       register: require('../'),
@@ -144,9 +144,9 @@ describe('Transaction', function() {
 
   it('should merge other data into the request', function(done) {
     var post = nock('https://my.app.com')
-                .post('/transactions', {
-                  transaction: { path: '/test', statusCode: 201, method: 'GET', version: '1.2.3' }
-                }).reply(201, { status: 'ok' });
+      .post('/transactions', {
+        transaction: { path: '/test', statusCode: 201, method: 'GET', version: '1.2.3' }
+      }).reply(201, { status: 'ok' });
 
     server.register({
       register: require('../'),
@@ -176,9 +176,9 @@ describe('Transaction', function() {
 
   it('should allow the server to set the objectName for the transaction call', function(done) {
     var post = nock('https://my.app.com')
-                .post('/transactions', {
-                  xaction: { path: '/test', statusCode: 201, method: 'GET', version: '1.2.3' }
-                }).reply(201, { status: 'ok' });
+      .post('/transactions', {
+        xaction: { path: '/test', statusCode: 201, method: 'GET', version: '1.2.3' }
+      }).reply(201, { status: 'ok' });
 
     server.register({
       register: require('../'),
@@ -209,9 +209,9 @@ describe('Transaction', function() {
 
   it('should allow the server to set the objectName to false and move the transaction info to root', function(done) {
     var post = nock('https://my.app.com')
-                .post('/transactions', {
-                  path: '/test', statusCode: 201, method: 'GET', version: '1.2.3'
-                }).reply(201, { status: 'ok' });
+      .post('/transactions', {
+        path: '/test', statusCode: 201, method: 'GET', version: '1.2.3'
+      }).reply(201, { status: 'ok' });
 
     server.register({
       register: require('../'),
@@ -242,9 +242,9 @@ describe('Transaction', function() {
 
   it('should allow the server to set authentication to include with the report', function(done) {
     var post = nock('https://my.app.com').matchHeader('Authorization', 'Basic bWU6c2VjcmV0')
-                .post('/transactions', {
-                  transaction: { path: '/test', statusCode: 201, method: 'GET' }
-                }).reply(201, { status: 'ok' });
+      .post('/transactions', {
+        transaction: { path: '/test', statusCode: 201, method: 'GET' }
+      }).reply(201, { status: 'ok' });
 
     server.register({
       register: require('../'),
@@ -275,9 +275,9 @@ describe('Transaction', function() {
 
   it('should handle errors from the transaction reporting url', function(done) {
     var post = nock('https://my.app.com')
-                .post('/transactions', {
-                  transaction: { path: '/test', statusCode: 203, method: 'GET' }
-                }).reply(500, { message: 'ack!' });
+      .post('/transactions', {
+        transaction: { path: '/test', statusCode: 203, method: 'GET' }
+      }).reply(500, { message: 'ack!' });
 
     server.register({
       register: require('../'),
@@ -311,9 +311,9 @@ describe('Transaction', function() {
 
   it('should handle Boom responses', function(done) {
     var post = nock('https://my.app.com')
-                .post('/transactions', {
-                  transaction: { path: '/test', statusCode: 403, method: 'GET' }
-                }).reply(201, { status: 'ok' });
+      .post('/transactions', {
+        transaction: { path: '/test', statusCode: 403, method: 'GET' }
+      }).reply(201, { status: 'ok' });
 
     server.register({
       register: require('../'),
@@ -343,9 +343,9 @@ describe('Transaction', function() {
 
   it('should not affect the response of the service', function(done) {
     var post = nock('https://my.app.com')
-                .post('/transactions', {
-                  transaction: { path: '/test', statusCode: 203, method: 'GET' }
-                }).reply(500, { message: 'ack!' });
+      .post('/transactions', {
+        transaction: { path: '/test', statusCode: 203, method: 'GET' }
+      }).reply(500, { message: 'ack!' });
 
     server.register({
       register: require('../'),
@@ -382,7 +382,7 @@ describe('Credentials', function() {
   var server;
 
   beforeEach(function(done) {
-    server = new Hapi.Server({ debug: { request: [ 'error' ] } }).connection({ host: 'test' });
+    server = new Hapi.Server({ debug: { request: ['error'] } }).connection({ host: 'test' });
     server.register(require('hapi-auth-basic'), done);
   });
 
@@ -393,17 +393,17 @@ describe('Credentials', function() {
 
   it('should send credentials information', function(done) {
     var post = nock('https://my.app.com')
-                .post('/transactions', {
-                  transaction: {
-                    path: '/test',
-                    statusCode: 203,
-                    method: 'GET',
-                    credentials: {
-                      id: '02893261-7e35-42e7-98cc-0b4c87296dc1',
-                      name: 'test'
-                    }
-                  }
-                }).reply(201, { status: 'ok' });
+      .post('/transactions', {
+        transaction: {
+          path: '/test',
+          statusCode: 203,
+          method: 'GET',
+          credentials: {
+            id: '02893261-7e35-42e7-98cc-0b4c87296dc1',
+            name: 'test'
+          }
+        }
+      }).reply(201, { status: 'ok' });
 
     server.auth.strategy('simple', 'basic', { validateFunc: function(request, username, password, cb) {
       cb(null, true, { id: '02893261-7e35-42e7-98cc-0b4c87296dc1', name: 'test' });
