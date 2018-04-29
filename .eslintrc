@@ -1,1 +1,3 @@
-extends: "vinli/server"
+{
+    "extends": "@dialexa/eslint-config-dialexa"
+}

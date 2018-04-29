@@ -28,13 +28,12 @@
     "yarp": "^1.0.0"
   },
   "devDependencies": {
+    "@dialexa/eslint-config-dialexa": "^4.1.1",
     "bluebird": "^3.5.1",
     "boom": "^7.2.0",
     "code": "^5.2.0",
     "coveralls": "^3.0.0",
-    "eslint": "^1.5.1",
-    "eslint-config-vinli": "^3.0.1",
-    "eslint-plugin-mocha": "^1.0.0",
+    "eslint": "^4.19.1",
     "hapi": "^16.6.2",
     "hapi-auth-basic": "^4.2.0",
     "lab": "^5.5.0",
