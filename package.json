@@ -18,10 +18,12 @@
     "http"
   ],
   "author": "Powell Kinney <powell@dialexa.com>",
-  "contributors": [{
-    "name": "Martin Arista",
-    "url": "https://www.mrtnrst.com"
-  }],
+  "contributors": [
+    {
+      "name": "Martin Arista",
+      "url": "https://www.mrtnrst.com"
+    }
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/dialexa/hapi-tattle/issues"
